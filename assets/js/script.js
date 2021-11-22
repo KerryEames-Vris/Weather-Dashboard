@@ -2,6 +2,8 @@ var storedCities = JSON.parse(localStorage.getItem("cities")) || [];
 var cityList = $("#city-list");
 var searchForm = $("#search-form");
 var searchedCity = $("#searched-city");
+var todaysWeather = document.getElementById("todaysWeather");
+var weekWeather = document.getElementById("weekWeather");
 
 // City search history
 
@@ -64,7 +66,11 @@ searchedCity.click(saveSearchedCities);
 // API call to get weather info
 
 function getWeather() {
-  var newCity = storedCities[fruits.length];
+  todaysWeather.removeChild(cityDate);
+  todaysWeather.removeChild(forecastDetails);
+  weekWeather.removeChild(weekCard);
+
+  var newCity = storedCities[storedCities.length];
   var cityUrl =
     "api.openweathermap.org/data/2.5/forecast/daily?q=" +
     newCity +
@@ -79,8 +85,6 @@ function getWeather() {
       return response.json();
     })
     .then(function (data) {
-      var todaysWeather = document.getElementById("todaysWeather");
-      var weekWeather = document.getElementById("weekWeather");
       var cityDate = document.createElement("h3");
       var forecastDetails = document.createElement("ul");
       var tempDetails = document.createElement("li");
@@ -99,17 +103,53 @@ function getWeather() {
       cityDate.textContent = data[0].city.name + " " + data[0].list.dt;
       forecastDetails.classList.add("noDots");
       forecastDetails2.classList.add("noDots");
-      tempDetails.textContent = data[0].list.temp.day;
-      windDetails.textContent = data[0].list.speed;
-      humDetails.textContent = data[0].list.humidity;
-      uvDetails.textContent = data[0].list;
+      tempDetails.textContent = "Temp: " + data[0].list.temp.day;
+      windDetails.textContent = "Wind: " + data[0].list.speed;
+      humDetails.textContent = "Humidity: " + data[0].list.humidity;
+      //
 
       todaysWeather.append(cityDate);
       todaysWeather.append(forecastDetails);
       forecastDetails.append(tempDetails);
       forecastDetails.append(windDetails);
       forecastDetails.append(humDetails);
-      forecastDetails.append(uvDetails);
+      //
+
+      var getLat = data[0].city.coord.lat;
+      var getLon = data[0].city.coord.lon;
+
+      var uvUrl =
+        "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+        getLat +
+        "&lon=" +
+        getLon +
+        "&exclude=hourly,daily&appid=b838f6a74f084064314505e05fecb924";
+
+      fetch(cityUrl, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var uvResult = document.createElement("button");
+          var uvCurrent = data[0].current.uvi;
+          if (uvCurrent < 2) {
+            uvResult.classList.add("uvNumber");
+          } else if (uvCurrent >= 2 && uvCurrent < 5) {
+            uvResult.classList.add("uvNumber2");
+          } else if (uvCurrent >= 5 && uvCurrent < 7) {
+            uvResult.classList.add("uvNumber3");
+          } else if (uvCurrent >= 8) {
+            uvResult.classList.add("uvNumber4");
+          }
+          uvResult.textContent = uvCurrent;
+          uvDetails.textContent = "UV Index: " + uvResult;
+          forecastDetails.append(uvDetails);
+        });
 
       for (var i = 1; i < data.length; i++) {
         weekCard.classList.add("col-auto", "mb-3");
