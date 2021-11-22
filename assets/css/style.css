@@ -6,3 +6,10 @@
 header {
   background-image: linear-gradient(to right, #0a58ca, #052c65);
 }
+.searchTitle {
+  font-weight: bold;
+}
+
+.inputBorder {
+  border-color: lightgray;
+}

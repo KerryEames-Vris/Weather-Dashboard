@@ -16,25 +16,47 @@
   <body>
     <header class="navbar bg-primary">
       <div class="container-fluid justify-content-center">
-        <h1 class="navbar-text top">Weather Forecast</h1>
+        <h2 class="navbar-text top">Weather Forecast</h2>
       </div>
     </header>
-    <aside>
-      <div>
-        <h1></h1>
-        <form>
-          <input type="text"></input>
-          <button class="btn btn-dark special-button">search</button>
-        </form>
-      </div>
-      <div>
-        <ul></ul>
-      </div>
-    </aside>
-    <main>
-      <div></div>
-      <div>
-        <h3></h3>
+    <!-- page container -->
+    <main class="container-fluid">
+      <!-- div holding the four sections -->
+      <div class="row">
+        <!-- section 1 search bar -->
+        <aside class="col-2">
+        <div>
+          <h2 class="customTitle">Search for a City:</h2>
+          <form class="row row-cols">
+            <input type="text" class="rounded inputBorder"></input>
+            <button class="btn btn-dark special-button">search</button>
+          </form>
+        </div>
+        <!-- section 2 search history -->
+        <div>
+          <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+          </ul>
+        </div>
+        </aside>
+        <!-- section 3 todays card -->
+        <div class="col-10">
+        
+          <div class="card">
+            <h3 class="customTitle">Seattle (date)</h3>
+            <ul>
+              <li>temp</li>
+              <li>wind</li>
+              <li>humidity</li>
+              <li>UV</li>
+            </ul>
+          </div>
+        
+        <!-- section 4 week card -->
+        <div>another card</div>
+        </div>
       </div>
     </main>
   </body>
