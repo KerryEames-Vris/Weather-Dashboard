@@ -6,7 +6,13 @@
 header {
   background-image: linear-gradient(to right, #0a58ca, #052c65);
 }
-.searchTitle {
+
+.btnColor {
+  background-color: #1c58b3;
+  color: white;
+}
+
+.customTitle {
   font-weight: bold;
 }
 

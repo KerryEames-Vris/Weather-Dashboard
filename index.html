@@ -20,30 +20,31 @@
       </div>
     </header>
     <!-- page container -->
-    <main class="container-fluid">
-      <!-- div holding the four sections -->
+    <base class="container-fluid">
       <div class="row">
+        <!-- left side of page -->
+        <aside class="col-2 offset-1 p-3">
         <!-- section 1 search bar -->
-        <aside class="col-2">
         <div>
           <h2 class="customTitle">Search for a City:</h2>
           <form class="row row-cols">
-            <input type="text" class="rounded inputBorder"></input>
-            <button class="btn btn-dark special-button">search</button>
+            <input type="text" class="rounded inputBorder" placeholder="City Name"></input>
+            <button class="btn btnColor special-button mt-2 mb-3">search</button>
           </form>
         </div>
         <!-- section 2 search history -->
-        <div>
-          <ul>
-            <li>1</li>
-            <li>2</li>
-            <li>3</li>
-          </ul>
+        <div class="row row-cols pt-3 border-top border-2">     
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
+          <button class="btn btn-secondary special-button mt-1 mb-2">Seattle</button>
         </div>
         </aside>
-        <!-- section 3 todays card -->
-        <div class="col-10">
-        
+        <!-- right side of page -->
+        <main class="col-9 p-2">
+          <!-- section 3 todays card -->
           <div class="card">
             <h3 class="customTitle">Seattle (date)</h3>
             <ul>
@@ -54,10 +55,71 @@
             </ul>
           </div>
         
-        <!-- section 4 week card -->
-        <div>another card</div>
-        </div>
+         <!-- section 4 week card -->
+          <div>
+            <h3>another card</h3>
+            <div class="container-fluid mt-5 search-Result">
+              <div class="row justify-content-center">
+                <div class="col-auto mb-3">
+                  <div class="card my-5">
+                    <h3 class="customTitle">Seattle (date)</h3>
+                    <ul>
+                     <li>temp</li>
+                     <li>wind</li>
+                     <li>humidity</li>
+                     <li>UV</li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-auto mb-3">
+  <div class="card my-5">
+    <h3 class="customTitle">Seattle (date)</h3>
+    <ul>
+     <li>temp</li>
+     <li>wind</li>
+     <li>humidity</li>
+     <li>UV</li>
+    </ul>
+  </div>
+</div>
+<div class="col-auto mb-3">
+  <div class="card my-5">
+    <h3 class="customTitle">Seattle (date)</h3>
+    <ul>
+     <li>temp</li>
+     <li>wind</li>
+     <li>humidity</li>
+     <li>UV</li>
+    </ul>
+  </div>
+</div>
+<div class="col-auto mb-3">
+  <div class="card my-5">
+    <h3 class="customTitle">Seattle (date)</h3>
+    <ul>
+     <li>temp</li>
+     <li>wind</li>
+     <li>humidity</li>
+     <li>UV</li>
+    </ul>
+  </div>
+</div>
+<div class="col-auto mb-3">
+  <div class="card my-5">
+    <h3 class="customTitle">Seattle (date)</h3>
+    <ul>
+     <li>temp</li>
+     <li>wind</li>
+     <li>humidity</li>
+     <li>UV</li>
+    </ul>
+  </div>
+</div>
+              </div>
+            </div>
+          </div>
+        </main>
       </div>
-    </main>
+    </base>
   </body>
 </html>
