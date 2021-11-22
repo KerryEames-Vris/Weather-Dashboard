@@ -19,3 +19,7 @@ header {
 .inputBorder {
   border-color: lightgray;
 }
+
+.noDots {
+  list-style: none;
+}

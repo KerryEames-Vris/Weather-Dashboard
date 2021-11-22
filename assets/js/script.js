@@ -79,18 +79,54 @@ function getWeather() {
       return response.json();
     })
     .then(function (data) {
-      for (var i = 0; i < data.length; i++) {
-        var todaysWeather = document.getElementById("todaysWeather");
-        var weekWeather = document.getElementById("weekWeather");
-        var cityDate = document.createElement("h3");
-        var forecastDetails = document.createElement("ul");
-        var tempDetails = document.createElement("li");
-        var windDetails = document.createElement("li");
-        var humDetails = document.createElement("li");
-        var uvDetails = document.createElement("li");
-        var weekCard = document.createElement("div");
-        var weekCardDetail = document.createElement("div");
-        var dateOnly = document.createElement("h3");
+      var todaysWeather = document.getElementById("todaysWeather");
+      var weekWeather = document.getElementById("weekWeather");
+      var cityDate = document.createElement("h3");
+      var forecastDetails = document.createElement("ul");
+      var tempDetails = document.createElement("li");
+      var windDetails = document.createElement("li");
+      var humDetails = document.createElement("li");
+      var forecastDetails2 = document.createElement("ul");
+      var tempDetails2 = document.createElement("li");
+      var windDetails2 = document.createElement("li");
+      var humDetails2 = document.createElement("li");
+      var uvDetails = document.createElement("li");
+      var weekCard = document.createElement("div");
+      var weekCardDetail = document.createElement("div");
+      var dateOnly = document.createElement("h3");
+
+      cityDate.classList.add("customTitle");
+      cityDate.textContent = data[0].city.name + " " + data[0].list.dt;
+      forecastDetails.classList.add("noDots");
+      forecastDetails2.classList.add("noDots");
+      tempDetails.textContent = data[0].list.temp.day;
+      windDetails.textContent = data[0].list.speed;
+      humDetails.textContent = data[0].list.humidity;
+      uvDetails.textContent = data[0].list;
+
+      todaysWeather.append(cityDate);
+      todaysWeather.append(forecastDetails);
+      forecastDetails.append(tempDetails);
+      forecastDetails.append(windDetails);
+      forecastDetails.append(humDetails);
+      forecastDetails.append(uvDetails);
+
+      for (var i = 1; i < data.length; i++) {
+        weekCard.classList.add("col-auto", "mb-3");
+        weekCardDetail.classList.add("card", "my-5");
+        dateOnly.classList.add("customTitle");
+        dateOnly.textContent = data[i].list.dt;
+        tempDetails2.textContent = data[i].list.temp.day;
+        windDetails2.textContent = data[i].list.speed;
+        humDetails2.textContent = data[i].list.humidity;
+
+        weekWeather.append(weekCard);
+        weekCard.append(weekCardDetail);
+        weekCardDetail.append(dateOnly);
+        weekCardDetail.append(forecastDetails2);
+        forecastDetails2.append(tempDetails2);
+        forecastDetails2.append(windDetails2);
+        forecastDetails2.append(humDetails2);
       }
     });
 }
