@@ -17,6 +17,7 @@ function saveCities(event) {
     localStorage.setItem("cities", JSON.stringify(storedCities));
     $("#city-input").val("");
     renderCities();
+    getWeather();
   }
 }
 
@@ -66,15 +67,17 @@ searchedCity.click(saveSearchedCities);
 // API call to get weather info
 
 function getWeather() {
-  todaysWeather.removeChild(cityDate);
-  todaysWeather.removeChild(forecastDetails);
-  weekWeather.removeChild(weekCard);
-
-  var newCity = storedCities[storedCities.length];
+  // if (todaysWeather.child !== null) {
+  // todaysWeather.removeChild(cityDate);
+  // todaysWeather.removeChild(forecastDetails);
+  // weekWeather.removeChild(weekCard);
+  // }
+  var newCity = storedCities[storedCities.length - 1];
   var cityUrl =
     "api.openweathermap.org/data/2.5/forecast/daily?q=" +
     newCity +
     "&cnt=6&APPID=b838f6a74f084064314505e05fecb924";
+  console.log(cityUrl);
   fetch(cityUrl, {
     method: "GET",
     headers: {
@@ -102,6 +105,7 @@ function getWeather() {
       var dateOnly = document.createElement("h3");
 
       var iconID = data[0].list.weather.icon;
+      console.log(iconID);
       var iconUrl = "https://openweathermap.org/img/wn/" + iconID + "@2x.png";
       weatherDetails.attributes.add("src", iconUrl);
       cityDate.classList.add("customTitle");
