@@ -86,6 +86,8 @@ function getWeather() {
     })
     .then(function (data) {
       var cityDate = document.createElement("h3");
+      var weatherDetails = document.createElement("img");
+      var weatherDetails2 = document.createElement("img");
       var forecastDetails = document.createElement("ul");
       var tempDetails = document.createElement("li");
       var windDetails = document.createElement("li");
@@ -99,13 +101,20 @@ function getWeather() {
       var weekCardDetail = document.createElement("div");
       var dateOnly = document.createElement("h3");
 
+      var iconID = data[0].list.weather.icon;
+      var iconUrl = "https://openweathermap.org/img/wn/" + iconID + "@2x.png";
+      weatherDetails.attributes.add("src", iconUrl);
       cityDate.classList.add("customTitle");
-      cityDate.textContent = data[0].city.name + " " + data[0].list.dt;
+      cityDate.textContent =
+        data[0].city.name + " " + data[0].list.dt + " " + weatherDetails;
       forecastDetails.classList.add("noDots");
       forecastDetails2.classList.add("noDots");
       tempDetails.textContent = "Temp: " + data[0].list.temp.day;
+      tempDetails.classList.add("m-1");
       windDetails.textContent = "Wind: " + data[0].list.speed;
+      windDetails.classList.add("m-1");
       humDetails.textContent = "Humidity: " + data[0].list.humidity;
+      humDetails.classList.add("m-1");
       //
 
       todaysWeather.append(cityDate);
@@ -148,22 +157,33 @@ function getWeather() {
           }
           uvResult.textContent = uvCurrent;
           uvDetails.textContent = "UV Index: " + uvResult;
+          uvDetails.classList.add("m-2");
           forecastDetails.append(uvDetails);
         });
 
       for (var i = 1; i < data.length; i++) {
+        var weatherImg = document.createElement("li");
         weekCard.classList.add("col-auto", "mb-3");
-        weekCardDetail.classList.add("card", "my-5");
+        weekCardDetail.classList.add("card", "my-5", "p-5", "cardColor");
         dateOnly.classList.add("customTitle");
         dateOnly.textContent = data[i].list.dt;
+        var iconID2 = data[i].list.weather.icon;
+        var iconUrl2 = "https://openweathermap.org/img/wn/" + iconID2 + ".png";
+        weatherDetails2.attributes.add("src", iconUrl2);
         tempDetails2.textContent = data[i].list.temp.day;
+        tempDetails2.classList.add("m-1");
         windDetails2.textContent = data[i].list.speed;
+        windDetails2.classList.add("m-1");
         humDetails2.textContent = data[i].list.humidity;
+        humDetails2.classList.add("m-1");
+        weatherImg.textContent = " " + weatherDetails2;
+        weatherImg.classList.add("m-2");
 
         weekWeather.append(weekCard);
         weekCard.append(weekCardDetail);
         weekCardDetail.append(dateOnly);
         weekCardDetail.append(forecastDetails2);
+        forecastDetails2.append(weatherImg);
         forecastDetails2.append(tempDetails2);
         forecastDetails2.append(windDetails2);
         forecastDetails2.append(humDetails2);

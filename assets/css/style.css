@@ -43,3 +43,8 @@ header {
   border-radius: 10px;
   background-color: red;
 }
+
+.cardColor {
+  background-color: rgb(26, 26, 126);
+  color: white;
+}
