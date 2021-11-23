@@ -24,25 +24,16 @@ function saveCities(event) {
 function renderCities() {
   if (storedCities.length >= 8) {
     storedCities.shift(7);
-    cityList.text("");
-    for (var i = 0; i < storedCities.length; i++) {
-      var cityListItem = $(
-        '<button class="btn btn-secondary special-button mt-1 mb-2" id="searched-city"></button>'
-      );
-      cityListItem.text(storedCities[i]);
-      cityListItem.attr("data-index", i);
-      cityList.prepend(cityListItem);
-    }
-  } else {
-    cityList.text("");
-    for (var i = 0; i < storedCities.length; i++) {
-      var cityListItem = $(
-        '<button class="btn btn-secondary special-button mt-1 mb-2" id="searched-city"></button>'
-      );
-      cityListItem.text(storedCities[i]);
-      cityListItem.attr("data-index", i);
-      cityList.prepend(cityListItem);
-    }
+  }
+  cityList.text("");
+  for (var i = 0; i < storedCities.length; i++) {
+    var cityListItem = $(
+      '<button class="btn btn-secondary special-button mt-1 mb-2" id="searched-city"></button>'
+    );
+    cityListItem.text(storedCities[i]);
+    cityListItem.attr("data-index", i);
+    cityListItem.on("click", getWeather);
+    cityList.prepend(cityListItem);
   }
 }
 
